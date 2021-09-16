@@ -7,6 +7,7 @@ import sqlalchemy
 from sqlalchemy import event
 import time
 import urllib
+import psycopg2
 
 def connectDB_pyodbc():
     print("Connecting....")
