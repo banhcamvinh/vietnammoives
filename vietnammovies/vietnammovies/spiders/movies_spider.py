@@ -72,6 +72,7 @@ class Movie_Spider(scrapy.Spider):
                     year = year[0]
                 else: year = None
 
+                
             duration = movie_el.css('.runtime::text').get(default='0')
             duration = int(re.findall('\d+',duration)[0])
 
@@ -129,7 +130,7 @@ class Movie_Spider(scrapy.Spider):
             db_con = connectDB_sqlalchemy()
             if db_con != None:
                 movies_df.to_sql("movies",db_con,index=False,if_exists="append",schema="dbo")
-                
+
         if next_page is not None:
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse,meta={'page':page+1,'movies_list':movies_list})
