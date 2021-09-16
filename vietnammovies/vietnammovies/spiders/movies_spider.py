@@ -72,7 +72,6 @@ class Movie_Spider(scrapy.Spider):
                     year = year[0]
                 else: year = None
 
-                
             duration = movie_el.css('.runtime::text').get(default='0')
             duration = int(re.findall('\d+',duration)[0])
 
